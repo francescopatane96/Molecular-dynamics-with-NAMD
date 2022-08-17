@@ -3,7 +3,7 @@ Perform molecular dynamics experiments (MD) with NAMD on colab
 
 instructions:
 
-1. utilize VMD on desktop or with the file 'VMD_colab' to:
+1. utilize VMD on desktop or with the file 'VMD_colab' to:\
 a. generate the new pdb file of the protein containing hydrogens atom, and the psf associate file.\
 b. solvate the protein in a water sphere. A new pdb and psf files are generate.
 
