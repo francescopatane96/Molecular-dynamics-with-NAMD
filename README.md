@@ -12,6 +12,20 @@ b. solvate the protein in a water sphere. A new pdb and psf files will be genera
 2. open 'Run_simulation_NAMD' file on colab to perform minimization, equilibration and run of the system.\
 If you just have your final pdb and psf files, you can directly use this module for your MD simulation. To perform it, you must unpload on your drive (and mount it on colab worksheet) psf and pdb files of your solvate protein and run the final code line.
 
-3. Analyze data using 'data_analysis' file on colab to calculate rmsd, residue rmsd and others.
-RMSD for individual residues: You will use a script within VMD that will allow you to compute the average RMSD of each residue in your protein, and assign this value to the User field for each residue.
+3. Analyze data using 'data_analysis' file on colab to calculate rmsd, residue rmsd and others.\
+RMSD for individual residues: You will use a script within VMD that will allow you to compute the average RMSD of each residue in your protein, and assign this value to the User field for each residue.\
+Modify residue_rmsd_auto tcl file with dcd and psf files. then modify the file output name. Run the tcl script using VMD tk console on colab. This command itself does not actually perform any calculations. It reads the script which contains a procedure called rmsd_residue_over_time. Calling this procedure will calculate the average RMSD for each residue you select over all the frames in a trajectory. The procedure is called as: rmsd_residue_over_time <mol> <sel_resid>.\
+where <mol> is the molecule in VMD that you select (if not specified, defaults to the top molecule), and <sel_resid> is a list of the residue numbers in that selection.
+For this example, you will select all the residues in the protein. The list of residue numbers can be obtained by typing in the TkCon window:\
+set sel_resid [[atomselect top "protein and alpha"] get resid]
+ 
+
+The above command will get the residue numbers of all the $\alpha $-carbons in the protein. Since there is just one and only one $\alpha $-carbon per residue, it is a good option. The command will create a list of residue numbers in the variable $sel_resid.\
+
+
+Call the procedure to calculate the RMSD values of all atoms in the newly created selection:\
+rmsd_residue_over_time top $sel_resid\
+ 
+
+You should see the molecule wiggle as each frame gets aligned to the initial structure (This may happen very fast in some machines). At the end of the calculation, you will get a list of the average RMSD per residue. This data is also printed to the file residue_rmsd.dat.
 
