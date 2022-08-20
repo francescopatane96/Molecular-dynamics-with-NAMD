@@ -13,3 +13,5 @@ b. solvate the protein in a water sphere. A new pdb and psf files will be genera
 If you just have your final pdb and psf files, you can directly use this module for your MD simulation. To perform it, you must unpload on your drive (and mount it on colab worksheet) psf and pdb files of your solvate protein and run the final code line.
 
 3. Analyze data using 'data_analysis' file on colab to calculate rmsd, residue rmsd and others.
+RMSD for individual residues: You will use a script within VMD that will allow you to compute the average RMSD of each residue in your protein, and assign this value to the User field for each residue.
+
